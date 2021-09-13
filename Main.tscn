@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://assets/leftclick.png" type="Texture" id=4]
+[ext_resource path="res://assets/wasd.png" type="Texture" id=5]
+[ext_resource path="res://Fullscreen.tscn" type="PackedScene" id=6]
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Enemy1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 377, 388 )
+TURN_SPEED = 5
+
+[node name="Enemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 713, 373 )
+TURN_SPEED = 10
+
+[node name="Enemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 776, 180 )
+TURN_SPEED = 25
+
+[node name="Enemy4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 388, 157 )
+TURN_SPEED = 50
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 569, 293 )
+
+[node name="MC1" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -72.0
+margin_top = -72.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen" parent="MC1" instance=ExtResource( 6 )]
+margin_left = 0.0
+margin_right = 72.0
+
+[node name="MC2" type="MarginContainer" parent="."]
+margin_right = 235.0
+margin_bottom = 218.0
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VC" type="VBoxContainer" parent="MC2"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 235.0
+margin_bottom = 236.0
+
+[node name="Label" type="Label" parent="MC2/VC"]
+margin_right = 230.0
+margin_bottom = 14.0
+text = "Player Moving Way"
+align = 1
+
+[node name="ItemList" type="ItemList" parent="MC2/VC"]
+margin_top = 18.0
+margin_right = 230.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 230, 0 )
+focus_mode = 0
+items = [ "Kinematic", null, false, "RigidBody2D Impulse", null, false, "RigidBody2D Force(Speed Limited)  ", null, false ]
+auto_height = true
+
+[node name="Label2" type="Label" parent="MC2/VC"]
+margin_top = 85.0
+margin_right = 230.0
+margin_bottom = 99.0
+text = "How to Control"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MC2/VC"]
+margin_top = 103.0
+margin_right = 230.0
+margin_bottom = 207.0
+
+[node name="TextureRect" type="TextureRect" parent="MC2/VC/HBoxContainer"]
+margin_right = 154.0
+margin_bottom = 104.0
+texture = ExtResource( 5 )
+
+[node name="TextureRect2" type="TextureRect" parent="MC2/VC/HBoxContainer"]
+margin_left = 158.0
+margin_top = 5.0
+margin_right = 222.0
+margin_bottom = 98.0
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="MC2/VC"]
+margin_top = 211.0
+margin_right = 230.0
+margin_bottom = 231.0
+text = "Reload Scene"
+
+[connection signal="pressed" from="MC2/VC/Button" to="." method="_on_Button_pressed"]
