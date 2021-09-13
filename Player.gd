@@ -44,7 +44,7 @@ func _integrate_forces(state):
 		
 	move_vec = move_vec.normalized()
 	var delta = state.get_step()
-	var MOVE_SPEED=20000
+	var MOVE_SPEED = 20000
 	if get_tree().current_scene.is_kinematic_move():
 		var vec=move_vec * MOVE_SPEED * delta
 		state.set_linear_velocity(vec)

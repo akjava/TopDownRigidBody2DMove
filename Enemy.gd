@@ -14,11 +14,6 @@ func lookAtNode(node, delta):
 	set_angular_velocity(angle / delta)
 	
 	
-func lookAtMouth(delta):
-	var angle = get_angle_to(get_global_mouse_position())
-	set_angular_velocity(angle / delta)
-
-
 func _integrate_forces(state):
 	var player = get_tree().current_scene.get_node("Player")
 	lookAtNode(player, state.get_step() * TURN_SPEED)
