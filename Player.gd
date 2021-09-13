@@ -8,14 +8,14 @@ func _ready():
 	pass # Replace with function body.
 
 
-#default are state.get_step(),speed are relative
+# default are state.get_step(),speed are relative
 func lookAtMouse(delta):
 	var angle = get_angle_to(get_global_mouse_position())
 	set_angular_velocity(angle / delta)
 
 
-func _unhandled_input(event): #
-	#time check
+func _unhandled_input(event):
+	# one time check
 	if event.is_action_pressed("ui_shot"):
 		fire = true	
 
@@ -26,8 +26,10 @@ func _integrate_forces(state):
 		b.global_position = $Muzzule.global_position
 		b.global_rotation = global_rotation
 		var angle = get_global_transform().get_rotation()
-		b.set_linear_velocity(Vector2.RIGHT.rotated(angle) * 1000)
-		get_parent().add_child(b)
+		var bulle_speed = 1000
+		b.set_linear_velocity(Vector2.RIGHT.rotated(angle) * bulle_speed)
+		get_parent().call_deferred("add_child", b) # some how need
+		#get_parent().add_child(b)
 		fire=false
 		
 	var move_vec = Vector2()
@@ -54,8 +56,7 @@ func _integrate_forces(state):
 			var addvec=move_vec * 2
 			state.add_central_force(addvec)
 			var maxspeed = 50
-			
-			#limitation
+			# limitation for easy control
 			if state.linear_velocity.x > maxspeed:
 				state.linear_velocity.x = maxspeed
 			elif state.linear_velocity.x <- maxspeed:
