@@ -7,13 +7,13 @@ var MOVE_SPEED = 20
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-	
-	
+
+
 func lookAtNode(node, delta):
 	var angle = get_angle_to(node.global_position)
 	set_angular_velocity(angle / delta)
-	
-	
+
+
 func _integrate_forces(state):
 	var player = get_tree().current_scene.get_node("Player")
 	lookAtNode(player, state.get_step() * TURN_SPEED)

@@ -5,12 +5,12 @@ var itemlist:ItemList
 func _ready():
 	itemlist = $"MC2/VC/ItemList"
 	itemlist.select(0)
-	
-	
+
+
 func is_kinematic_move():
 	return itemlist.is_selected(0)
-	
-	
+
+
 func is_impulse_move():
 	return itemlist.is_selected(1)
 
